@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
   addContactRequest,
   addContactSuccess,
   addContactError,
@@ -9,6 +12,15 @@ import {
 } from './phonebook-actions';
 
 axios.defaults.baseURL = 'http://localhost:4040';
+
+const fetchContacts = () => dispatch => {
+  dispatch(fetchContactRequest());
+
+  axios
+    .get('/contacts')
+    .then(({ data }) => dispatch(fetchContactSuccess(data)))
+    .catch(error => dispatch(fetchContactError(error)));
+};
 
 const addContact = addedContact => dispatch => {
   dispatch(addContactRequest());
@@ -28,4 +40,4 @@ const deleteContact = id => dispatch => {
     .catch(error => dispatch(deleteContactError(error)));
 };
 
-export { addContact, deleteContact };
+export { fetchContacts, addContact, deleteContact };
