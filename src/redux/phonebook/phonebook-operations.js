@@ -15,7 +15,6 @@ axios.defaults.baseURL = 'http://localhost:4040';
 
 const fetchContacts = () => dispatch => {
   dispatch(fetchContactRequest());
-
   axios
     .get('/contacts')
     .then(({ data }) => dispatch(fetchContactSuccess(data)))

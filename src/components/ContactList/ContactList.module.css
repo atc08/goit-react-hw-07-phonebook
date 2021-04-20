@@ -13,11 +13,11 @@
 }
 
 .ContactListItem:nth-child(odd) {
-  background-color: lightsalmon;
+  background-color: rgb(255, 160, 122);
 }
 
 .ContactListItem:nth-child(even) {
-  background-color: darkorchid;
+  background-color: rgb(153, 50, 204);
 }
 
 .ContactListItemText {

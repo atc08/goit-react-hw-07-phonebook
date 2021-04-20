@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { changeFilter } from '../../redux/phonebook/phonebook-actions';
+import { changeFilter, getFilter } from '../../redux/phonebook';
 import Filter from './Filter';
 
 const mapStateToProps = state => ({
-  filter: state.phonebook.filter,
+  filter: getFilter(state),
 });
 
 const mapDispatchToProps = dispatch => ({

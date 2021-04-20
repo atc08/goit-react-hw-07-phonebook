@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchContacts } from './redux/phonebook/phonebook-operations';
+import { fetchContacts, getLoading } from './redux/phonebook';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
@@ -12,6 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {this.props.isLoadingContacts && <h1>LOADING...</h1>}
         <h1>Phonebook</h1>
         <ContactForm />
 
@@ -23,8 +24,12 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isLoadingContacts: getLoading(state),
+});
+
 const mapDispatchToProps = dispatch => ({
   fetchContacts: () => dispatch(fetchContacts()),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

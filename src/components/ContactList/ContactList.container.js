@@ -1,16 +1,9 @@
 import { connect } from 'react-redux';
-import { deleteContact } from '../../redux/phonebook/phonebook-operations';
 import ContactList from './ContactList';
+import { deleteContact, getFilteredContact } from '../../redux/phonebook';
 
-const getFilteredContact = (allContacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-  return allContacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ phonebook: { contacts, filter } }) => ({
-  contacts: getFilteredContact(contacts, filter),
+const mapStateToProps = state => ({
+  contacts: getFilteredContact(state),
 });
 
 const mapDispatchToProps = dispatch => ({
